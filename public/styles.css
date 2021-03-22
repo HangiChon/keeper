@@ -12,14 +12,14 @@ body {
 }
 
 header {
-  background-color: #f5ba13;
+  background-color: #affce8;
   margin: auto -16px;
   padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
-  color: #fff;
+  color: rgb(82, 173, 158);
   font-family: "McLaren", cursive;
   font-weight: 200;
 }
