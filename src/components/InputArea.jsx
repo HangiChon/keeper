@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import { isPropertySignature } from "typescript";
 
 function InputArea (props) {
     const [note, setNote] = useState({
