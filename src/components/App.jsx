@@ -1,20 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
-import notes from "../notes";
+import InputArea from "./InputArea";
+import { isPropertySignature } from "typescript";
 
 function App() {
+    const [noteArray, setNoteArray] = useState([]);
+
+    function addItem(note) {
+        setNoteArray( prev => {
+            return [...prev, note];
+        });
+        console.log(noteArray);
+    }
+
+    function deleteItem(id) {
+        setNoteArray( prevArray => {
+            return prevArray.filter( (eachNote, index) => {
+                return index !== id;
+            });
+        });
+    }
+
     return (
     <div>
     <Header />
-    {notes.map(entry => (
+    <InputArea onAdd={addItem} />
+    {noteArray.map( (eachNote, index) => (
         <Note
-        key = {entry.key}
-        term = {entry.title}
-        description = {entry.content}
+            key={index}
+            id={index}
+            title={eachNote.title}
+            content={eachNote.content}
+            onDelete={deleteItem}
         />
-    ))}
+        ))}
+    
     <Footer />
     </div>
     );
