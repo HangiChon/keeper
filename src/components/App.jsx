@@ -11,7 +11,6 @@ function App() {
         setNoteArray( prev => {
             return [...prev, note];
         });
-        console.log(noteArray);
     }
 
     function deleteItem(id) {
@@ -21,6 +20,7 @@ function App() {
             });
         });
     }
+    // console.log(noteArray);
 
     return (
     <div>
