@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 
 function InputArea (props) {
     const [note, setNote] = useState({
         title: "",
         content: ""
     })
+
+    const [isExpanded, setIsExpanded] = useState(false);
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -33,29 +37,39 @@ function InputArea (props) {
 
     }
 
+    function handleClick(event) {
+        props.onAdd(note);
+        setNote({
+            title: "",
+            content: ""
+        });
+        event.preventDefault();
+    }
+    
+
     return (
         <div>
-            <form>
+            <form className="create-note">
+            {isExpanded &&
                 <input
                 name="title"
                 placeholder="Title"
                 value={note.title}
-                onChange={handleChange} />
+                onChange={handleChange}
+                autoFocus />
+                }
 
                 <textarea
                 name="content" 
                 placeholder="Enter a note here..."
                 value={note.content}
-                onChange={handleChange} />
+                onClick={() => setIsExpanded(true)}
+                onChange={handleChange}
+                rows={isExpanded ? 3 : 1} />
 
-                <button onClick={(event) => {
-                    props.onAdd(note);
-                    setNote({
-                        title: "",
-                        content: ""
-                    });
-                    event.preventDefault();
-                    }}>Add</button>
+                <Fab onClick={handleClick}>
+                    <AddIcon />
+                    </Fab>
             </form>
         </div>
     )
