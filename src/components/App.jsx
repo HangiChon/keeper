@@ -3,7 +3,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
 import InputArea from "./InputArea";
-// import { isPropertySignature } from "typescript";
 
 function App() {
     const [noteArray, setNoteArray] = useState([]);
